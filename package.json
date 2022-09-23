@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "node:dev": "node node_modules/.bin/ts-node -r tsconfig-paths/register",
-    "run:s3:get": "yarn node:dev ./aws_s3/get.ts"
+    "run:s3:get": "yarn node:dev ./aws_s3/get.ts",
+    "run:s3:delete": "yarn node:dev ./aws_s3/delete.ts"
   },
   "devDependencies": {
     "@aws-sdk/types": "^3.171.0",
