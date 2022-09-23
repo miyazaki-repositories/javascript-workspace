@@ -1,5 +1,9 @@
 import environment, { ENV_KEY } from "@/env";
-import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  DeleteObjectCommand,
+  PutObjectCommand,
+} from "@aws-sdk/client-s3";
 
 const env = environment();
 const bucketName = env.get(ENV_KEY.AWS_S3_PUBLIC_BUCKET_NAME);
@@ -31,7 +35,33 @@ const deleteObjectByPublicBucket = async (
   const response = await client.send(command);
   const statusCode = response?.$metadata?.httpStatusCode;
 
-  return Number(statusCode) <= 200 && Number(statusCode) > 300;
+  return Number(statusCode) <= 200 && Number(statusCode) < 300;
 };
 
-export { getObjectByPublicBucket, deleteObjectByPublicBucket };
+/**
+ * バケットにファイルをアップロードします
+ * @description
+ *  - パブリック・プライベートのバケットでコードは同じです
+ */
+const putObjectByPublicBucket = async (
+  client: S3Client,
+  objectKey: string,
+  file: Buffer
+): Promise<boolean> => {
+  const command = new PutObjectCommand({
+    Bucket: bucketName,
+    Key: objectKey,
+    Body: file,
+    Tagging: `Key1=Value1&Key2=Value2`,
+  });
+  const response = await client.send(command);
+  const statusCode = response?.$metadata?.httpStatusCode;
+
+  return Number(statusCode) <= 200 && Number(statusCode) < 300;
+};
+
+export {
+  getObjectByPublicBucket,
+  deleteObjectByPublicBucket,
+  putObjectByPublicBucket,
+};

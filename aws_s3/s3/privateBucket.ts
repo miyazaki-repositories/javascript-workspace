@@ -4,6 +4,7 @@ import {
   S3Client,
   GetObjectCommand,
   DeleteObjectCommand,
+  PutObjectCommand,
 } from "@aws-sdk/client-s3";
 
 const env = environment();
@@ -50,7 +51,33 @@ const deleteObjectByPrivateBucket = async (
   const response = await client.send(command);
   const statusCode = response?.$metadata?.httpStatusCode;
 
-  return Number(statusCode) <= 200 && Number(statusCode) > 300;
+  return Number(statusCode) <= 200 && Number(statusCode) < 300;
 };
 
-export { getObjectByPrivateBucket, deleteObjectByPrivateBucket };
+/**
+ * バケットにファイルをアップロードします
+ * @description
+ *  - パブリック・プライベートのバケットでコードは同じです
+ */
+const putObjectByPrivateBucket = async (
+  client: S3Client,
+  objectKey: string,
+  file: Buffer
+): Promise<boolean> => {
+  const command = new PutObjectCommand({
+    Bucket: bucketName,
+    Key: objectKey,
+    Body: file,
+    Tagging: `Key1=Value1&Key2=Value2`,
+  });
+  const response = await client.send(command);
+  const statusCode = response?.$metadata?.httpStatusCode;
+
+  return Number(statusCode) <= 200 && Number(statusCode) < 300;
+};
+
+export {
+  getObjectByPrivateBucket,
+  deleteObjectByPrivateBucket,
+  putObjectByPrivateBucket,
+};

@@ -1,6 +1,9 @@
 # javascript-workspace
-javascriptでいろんなコード試しに書く用リポジトリ
+
+javascript（と言いつつtypescript）でいろんなコードをお試しするリポジトリ
 
 ## 使い方
 
-`.env.example` をコピーして `.env` を作成します。
+- `.env.example` をコピーして `.env` を作成します。
+- `yarn install` します
+- あとはpackage.jsonのscriptsを参照してください
