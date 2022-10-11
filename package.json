@@ -7,6 +7,9 @@
   "private": true,
   "scripts": {
     "node:dev": "node node_modules/.bin/ts-node -r tsconfig-paths/register",
+    "run:cf:get": "yarn node:dev ./aws_cloudfront/get.ts",
+    "run:cf:get2": "yarn node:dev ./aws_cloudfront/get2.ts",
+    "run:cf:get3": "yarn node:dev ./aws_cloudfront/get3.ts",
     "run:s3:get": "yarn node:dev ./aws_s3/get.ts",
     "run:s3:delete": "yarn node:dev ./aws_s3/delete.ts",
     "run:s3:put": "yarn node:dev ./aws_s3/put.ts"
@@ -21,7 +24,10 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.171.0",
+    "@aws-sdk/cloudfront-signer": "^3.186.0",
     "@aws-sdk/s3-request-presigner": "^3.173.0",
+    "aws-cloudfront-sign": "^2.2.0",
+    "aws-sdk": "^2.1231.0",
     "dotenv": "^16.0.2",
     "uuid": "^9.0.0"
   }
