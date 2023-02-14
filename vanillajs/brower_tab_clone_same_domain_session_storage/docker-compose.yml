@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./www:/var/www
+      - ./nginx/:/etc/nginx/conf.d/
