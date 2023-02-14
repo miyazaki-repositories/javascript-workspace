@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>any_page1</title>
+  </head>
+  <body>
+    <header>
+      <h1>any_page1</h1>
+      <a href="./" target="_blank" rel="noopener noreferrer"
+        >top</a
+      >
+      <a href="./any_page1.html" target="_blank" rel="noopener noreferrer"
+        >any_page1</a
+      >
+      <a href="./any_page2.html" target="_blank" rel="noopener noreferrer"
+        >any_page2</a
+      >
+    </header>
+    <main>
+      <section class="input_area_section">
+        <div>
+          <h2>キーとバリューを入力してセッションストレージに値を登録します</h2>
+          <input
+            type="text"
+            name="input_key"
+            id="input_key"
+            placeholder="key"
+          />
+          <input
+            type="text"
+            name="input_value"
+            id="input_value"
+            placeholder="value"
+          />
+          <button id="add_button">add</button>
+        </div>
+      </section>
+      <section class="show_values_section">
+        <div>
+          <h2>今開いているタブ内のセッションストレージの値を一覧表示します</h2>
+          <button id="delete_button">delete</button>
+          <button id="refresh_button">refresh</button>
+          <div id="show_values">
+            <!--値の一覧はscript.jsの中で設定します -->
+            <table id="values_table">
+              <tr>
+                <th>key</th>
+                <th>value</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
